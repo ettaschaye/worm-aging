@@ -2,9 +2,9 @@
 
 
 
-## Title: Differential Expression Analysis on Aging in C.Elegans 
+## Title: Differential Expression Analysis on Aging in *C. elegans* 
 
-Roux et al. published a fascinating paper in 2023 titled "Individual cell types in C. elegans age differently and activate distinct cell-protective responses", in which they perform single-cell RNA sequencing on C. Elegans cultures for 15 different timepoints (Day 1-Day 15) in order to explore the effect of aging on gene expression in both a global and tissue-specific manner. We intend to use the dataset provided by these authors on the Gene Expression Omnibus in order to compare genes that are significantly upregulated and downregulated in C.Elegans neurons, muscle, and epithelium from day 1 to day 15. 
+Roux et al. published a fascinating paper in 2023 titled "Individual cell types in *C. elegans* age differently and activate distinct cell-protective responses", in which they perform single-cell RNA sequencing on *C. elegans* cultures for six different timepoints (Days 1, 3, 5, 8, 11, and 15) in order to explore the effect of aging on gene expression in both a global and tissue-specific manner. We intend to use the dataset provided by these authors on the Gene Expression Omnibus in order to compare genes that are significantly upregulated and downregulated in *C. elegans* neurons, muscle, and epithelium from day 1 to day 15. 
 
 Datasets (Day1 - Day15 samples): https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE208154
 
