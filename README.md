@@ -12,6 +12,3 @@ Software: Seurat v5 (https://satijalab.org/seurat/) and/or Monocle (http://cole-
 
 ## Plan
 1. Use Seurat or Monocle R packages to do initial loading in of the dataset (just the Day1 and Day15 samples) from the GEO page. Next, we will do a basic DE analysis on the combined neuron, epithelium and muscle cells over D1 and D15 to make sure that we can see the age-based expression change reported in the paper. We will visualize this analysis with a volcano plot, as seen below: 
-![volcano_plot](journal.ppat.1012245.s016 (1).tif)
-
-![upset_plot](image.png)
