@@ -201,5 +201,7 @@ cl5dat$V2
 cl3dat$V2
 cl7dat$V2
 
-
+#make an upset plot
+upsetdata <- list("head neurons" = cl5dat$V2[1:500], "other neurons" = cl3dat$V2[1:500], "seam cells" = cl7dat$V2[1:500])
+upset(fromList(upsetdata), order.by = "freq")
   
