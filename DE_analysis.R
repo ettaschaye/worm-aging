@@ -204,4 +204,14 @@ cl7dat$V2
 #make an upset plot
 upsetdata <- list("head neurons" = cl5dat$V2[1:500], "other neurons" = cl3dat$V2[1:500], "seam cells" = cl7dat$V2[1:500])
 upset(fromList(upsetdata), order.by = "freq")
+
+#write to csv for GO analysis 
+cl5dat$V2
+cl3dat$V2
+cl7dat$V2
+
+write.csv(cl5dat$V2_GO, "head_tail_neurons_GO.csv", row.names = FALSE, quote = FALSE) 
+write.csv(cl3dat$V2_GO, "ventral_cord_neurons_GO.csv", row.names = FALSE, quote = FALSE) 
+write.csv(cl7dat$V2_GO, "seam_cells_GO.csv", row.names = FALSE, quote = FALSE) 
+
   
