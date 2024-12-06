@@ -45,7 +45,7 @@ cds <- align_cds(cds, num_dim = 100, alignment_group = "sample")
 cds <- reduce_dimension(cds)
 
 
-  
+
 #when controlling for batch effects, Day1 and Day8 look really good! You could do a lot with a DE analysis between timepoints with this I think. 
 
 
@@ -176,6 +176,7 @@ ggplot(data = cl13dat, mapping = aes(x = normalized_effect, y = -log10(p_value))
 upsetdata <- list("Muscle" = cl4dat$V2[1:500], "Gonad" = cl1dat$V2[1:500], "Neurons" = cl13dat$V2[1:500])
 upset(fromList(upsetdata), order.by = "freq")
 
+<<<<<<< HEAD
 #Find genes that are co-differentially expressed between the three DE analyses
 common_elements <- Reduce(intersect, list(cl4dat$V2[1:500], cl1dat$V2[1:500], cl13dat$V2[1:500]))
 
@@ -185,5 +186,3 @@ write.csv(cl4dat$V2, "cl4.csv", row.names = FALSE, quote = FALSE)
 write.csv(cl1dat$V2, "cl1.csv", row.names = FALSE, quote = FALSE)
 write.csv(cl13dat$V2, "cl13.csv", row.names = FALSE, quote = FALSE)
 write.csv(common_elements, "DE_allthree_2.csv", row.names = FALSE, quote = FALSE)
-
-
