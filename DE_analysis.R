@@ -7,17 +7,9 @@ d1cds <- load_mm_data(mat_path = "~/Desktop/Qbb_project_data/day1/matrix.mtx",
                       feature_anno_path = "~/Desktop/Qbb_project_data/day1/features.tsv", 
                       cell_anno_path = "~/Desktop/Qbb_project_data/day1/barcodes.tsv")
 
-d11cds <- load_mm_data(mat_path = "~/Desktop/Qbb_project_data/day11/matrix.mtx", 
-                      feature_anno_path = "~/Desktop/Qbb_project_data/day11/features.tsv", 
-                      cell_anno_path = "~/Desktop/Qbb_project_data/day11/barcodes.tsv")
-
 d8cds <- load_mm_data(mat_path = "~/Desktop/Qbb_project_data/day8/matrix.mtx", 
                       feature_anno_path = "~/Desktop/Qbb_project_data/day8/features.tsv", 
                       cell_anno_path = "~/Desktop/Qbb_project_data/day8/barcodes.tsv")
-
-d15cds <- load_mm_data(mat_path = "~/Desktop/Qbb_project_data/day15/matrix.mtx", 
-                      feature_anno_path = "~/Desktop/Qbb_project_data/day15/features.tsv", 
-                      cell_anno_path = "~/Desktop/Qbb_project_data/day15/barcodes.tsv")
 
 
 
@@ -55,8 +47,6 @@ cds <- reduce_dimension(cds)
 
   
 #when controlling for batch effects, Day1 and Day8 look really good! You could do a lot with a DE analysis between timepoints with this I think. 
-#clusters of interest (seem to have different shapes depending on age: 
-# 5, 7, 3
 
 
 cds <- cluster_cells(cds, resolution=1e-5)
@@ -75,133 +65,125 @@ marker_test_res <- top_markers(cds, group_cells_by="cluster",
                                reference_cells=1000, cores=8)
 
 marker_test_res %>%
-  filter(cell_group == 5) %>%
-  arrange(desc(mean_expression)) %>%
+  filter(cell_group == 4) %>%
+  arrange(marker_test_p_value) %>%
   View()
-
-#cluster 5 #Likely Neurons, head neurons, sheath cells 
-#WBGene00003754 - head neuron, lateral ganglion 
-#WBGene00001758 - anal depressor muscle, amphid neuron, head, head neuron, hypodermis, intestine, nervous system, phasmid neuron, tail, tail neuron, 
-#WBGene00004122 - pharyngeal muscle cell, intestinal valve vpi cells
-#WBGene00019289 - Neuronal sheath cell, phasmid sheath cell, socket cell, tail, head, amphid sheath cell
+#WBGene00006436 body wall musculature, muscle cell, reproductive, vulval muscle, 
+#WBGene00006820 gonad, intestinal muscle, pharyngeal muscle cell, tail, vulval muscle, anal depressor muscle, anal sphincter muscle, 
+#WBGene00006759 pharyngeal muscle, vulval muscle, 
+#WBGene00002280 rectal muscle, reproductive system, spermatheca, tail ganglion, tail neuron, vulval muscle, anal depressor muscle, PVT, uterine muscle, body wall musculature, coelomocite, head, head neuron, nervous system
+#WBGene00001386 vulval muscle, body wall musculature, male, vulval muscle
+#WBGene00001328 vulva, vulval muscle, anal depressor muscle, basal lamina, body wall musculature, gonad, intestine, 
+#cluster 4 is likely muscle cells
 
 marker_test_res %>%
-  filter(cell_group == 7) %>%
-  arrange(desc(mean_expression)) %>%
+  filter(cell_group == 1) %>%
+  arrange(marker_test_p_value) %>%
   View()
-
-#cluster 7 Definitely hypodermis/seam cells
-#WBGene00003891 coelomocyte, hypodermis, seam cell, spermatheca, uterus
-#WBGene00001694 anterior arcade cell, vulB1/B2, vulD, hypodermis, neuron, epithelium, seam cell, 
-#WBGene00001692 hypodermis, seam cell, 
-#WBGene00003765 head neuron, hypodermis, spermatheca, ASIL/R, 
-#WBGene00003767 Syncytium, hypodermis, 
-#WBGene00001699 seam cell, 
-#WBGene00000558 hypodermis, intestine, seam cell, 
-#WBGene00011522 seam cell, vulva, cuticle, 
-#WBGene00008205 dorsal nerve cord, ventral nerve cord, 
-#WBGene00003664 seam cell, 
-#WBGene00009342 syncytium, seam cell, permatheca
-#WBGene00011583 seam cell, 
-
+#WBGene00004798 gonad, 
+#WBGene00020588 germ line, 
+#WBGene00003955 germ line, 
+#WBGene00001598 germ line, 
+#WBGene00008218 germ line,
+#WBGene00002073 germ line, 
+#cluster 1 is definitely gonad
 
 marker_test_res %>%
-  filter(cell_group == 3) %>%
-  arrange(desc(mean_expression)) %>%
+  filter(cell_group == 13) %>%
+  arrange(marker_test_p_value) %>%
   View()
 
-#Cluster 3 #Other neurons 
-#WBGene00003759 tail neuron, VA neuron, VB neuron, AFDL/R, AS neurons, body wall musculature, DA neuron, DB neuron, dorsal nerve cord, head neuron, neuron, pharyngeal neuron, 
-#WBGene00003747 ventral nerve cord, ASIL/R, AWBL/R, head neuron, spermatheca, tail neuron, VA neuron, ventral cord neuron, vulval muscle, 
-#WBGene00008610 VA neuron, VB neuron, VD neuron, DA neuron, DB neuron, 
-#WBGene00006999 muscle cell, neuron, reproductive system, spermatheca, vulva, vulval muscle, anal sphincter muscle
-#WBGene00006633 tail neuron, ventral cord neuron, touch receptor neuron, DA neuron, 
-#WBGene00009958 DD neuron, dorsal nerve cord, GABAergic neuron, IL1 neuron, IL2 neuron, motor neuron, nerve ring, neuron, ventral nerve cord, ventral nerve cord, AIZL/R, ASGL/R, AVHL/R, AVKL/R, OLLL/R, RIAL/R, RICL/R, RMED, RMEL/R, RMEV, SABD, SABVL/R, cholinergic neuron, 
-#WBGene00004933 nervous system, rectal gland cell, somatic gonad, 
-#WBGene00011251 ventral cord neuron, ventral nerve cord, lateral nerve cord,
-#WBGene00009221 neuron, pharyngeal muscle cell
-#WBGene00006682 ventral cord neuron, DD neuron, motor neuron, neuron, 
-#WBGene00022530 cholinergic neuron, 
-#WBGene00010060 AIYL, AIYR
+#Cluster 13 is neurons
+#WBGene00008610 VA neuron, VB neuron, VC neuron, DA neuron, DB neuron, 
+#WBGene00006831 ventral cord neuron, ventral nerve cord, AWCL/R, PLML, PLMR, dorsal nerve cord, lateral nerve cord, nerve ring, neuron, 
+#WBGene00000175 muscle cell, 
+#WBGene00006756 nerve ring, pharyngeal neuron, tail, VA neuron, VB neuron, VC nueron, ventral cord neuron, ventral nerve cord, CA1-8, CA9, CEMDL/R, HOB, R1AL/R, R2AL/R, an insane amount of other specific neurons
+#WBGene00012128 ventral cord neuron, 
+#WBGene00012759 ventral nerve cord, SABD, cholinergic neuron, other specific neurons
 
 
-#subset cluster 5
-cds_cl5 <- cds[,colData(cds)$cluster == 5]
-plot_cells(cds_cl5, color_cells_by = "Timepoint")
+#subset cluster 4 (Muscle)
+cds_cl4 <- cds[,colData(cds)$cluster == 4]
+plot_cells(cds_cl4, color_cells_by = "Timepoint")
 #DE analysis based on age
 #Normalized_effect is equal to log2FC
-gene_fits <- fit_models(cds_cl5, model_formula_str = "~Timepoint")
+gene_fits <- fit_models(cds_cl4, model_formula_str = "~Timepoint")
 fit_coefs <- coefficient_table(gene_fits)
-cl5dat <- fit_coefs %>%
-  filter(q_value != 0) %>%
+cl4dat <- fit_coefs %>%
   filter(normalized_effect != 0 ) %>%
   arrange(q_value) %>%
   filter(q_value < 0.05) 
 #Should be able to make a volcano plot with this pretty easily 
-ggplot(data = cl5dat, mapping = aes(x = normalized_effect, y = -log10(p_value))) + 
+ggplot(data = cl4dat, mapping = aes(x = normalized_effect, y = -log10(p_value))) + 
   geom_point() +
   geom_point(aes(color = (abs(normalized_effect) > 2 & p_value < 1e-20))) +
-  geom_text(data = cl5dat %>% filter(abs(normalized_effect) > 2 & p_value < 1e-20),
+  geom_text(data = cl4dat %>% filter(abs(normalized_effect) > 2 & p_value < 1e-20),
             aes(x = normalized_effect, y = -log10(p_value) + 3, label = V2), size = 2,) +
   theme_classic() +
   theme(legend.position = "none") +
   scale_color_manual(values = c("darkgray", "darkblue")) +
-  labs(title = "Head/tail neurons", y = expression(-log[10]("p-value")), x = expression(log[2]("fold change")))
+  labs(title = "Muscle cells", y = expression(-log[10]("p-value")), x = expression(log[2]("fold change")))
 
 
 
-#Do the same for cluster 7
-cds_cl7 <- cds[,colData(cds)$cluster == 7]
-plot_cells(cds_cl7, color_cells_by = "Timepoint")
+#Do the same for cluster 1 (gonad)
+cds_cl1 <- cds[,colData(cds)$cluster == 1]
+plot_cells(cds_cl1, color_cells_by = "Timepoint")
 #DE analysis
 #Normalized_effect is equal to log2FC
-gene_fits <- fit_models(cds_cl7, model_formula_str = "~Timepoint")
+gene_fits <- fit_models(cds_cl1, model_formula_str = "~Timepoint")
 fit_coefs <- coefficient_table(gene_fits)
-cl7dat <- fit_coefs %>%
-  filter(q_value != 0) %>%
+cl1dat <- fit_coefs %>%
   filter(normalized_effect != 0 ) %>%
   arrange(q_value) %>%
   filter(q_value < 0.05) 
 #Should be able to make a volcano plot with this pretty easily 
-ggplot(data = cl7dat, mapping = aes(x = normalized_effect, y = -log10(p_value))) + 
+ggplot(data = cl1dat, mapping = aes(x = normalized_effect, y = -log10(p_value))) + 
   geom_point() +
   geom_point(aes(color = (abs(normalized_effect) > 2 & p_value < 1e-20))) +
-  geom_text(data = cl7dat %>% filter(abs(normalized_effect) > 2 & -log10(p_value) > 150),
-           aes(x = normalized_effect, y = -log10(p_value) + 5, label = V2), size = 2,) +
-  theme_classic() +
-  theme(legend.position = "none") +
-  scale_color_manual(values = c("darkgray", "darkblue")) +
-  labs(title = "Seam cells", y = expression(-log[10]("p-value")), x = expression(log[2]("fold change")))
-
-
-#And cluster 3
-cds_cl3 <- cds[,colData(cds)$cluster == 3]
-plot_cells(cds_cl3, color_cells_by = "Timepoint")
-#DE analysis
-#Normalized_effect is equal to log2FC
-gene_fits <- fit_models(cds_cl3, model_formula_str = "~Timepoint")
-fit_coefs <- coefficient_table(gene_fits)
-cl3dat <- fit_coefs %>%
-  filter(q_value != 0) %>%
-  filter(normalized_effect != 0 ) %>%
-  arrange(q_value) %>%
-  filter(q_value < 0.05) 
-#Should be able to make a volcano plot with this pretty easily 
-ggplot(data = cl3dat, mapping = aes(x = normalized_effect, y = -log10(p_value))) + 
-  geom_point() +
-  geom_point(aes(color = (abs(normalized_effect) > 2 & p_value < 1e-20))) +
-  geom_text(data = cl3dat %>% filter(abs(normalized_effect) > 2 & p_value < 1e-20),
+  geom_text(data = cl1dat %>% filter(abs(normalized_effect) > 2.7 & p_value < 1e-20),
             aes(x = normalized_effect, y = -log10(p_value) + 3, label = V2), size = 2,) +
   theme_classic() +
   theme(legend.position = "none") +
   scale_color_manual(values = c("darkgray", "darkblue")) +
-  labs(title = "Ventral Nerve Cord Neurons", y = expression(-log[10]("p-value")), x = expression(log[2]("fold change")))
+  labs(title = "Gonad cells", y = expression(-log[10]("p-value")), x = expression(log[2]("fold change")))
 
-cl5dat$V2
-cl3dat$V2
-cl7dat$V2
+
+#And cluster 13 (neurons)
+cds_cl13 <- cds[,colData(cds)$cluster == 13]
+plot_cells(cds_cl13, color_cells_by = "Timepoint")
+#DE analysis
+#Normalized_effect is equal to log2FC
+gene_fits <- fit_models(cds_cl13, model_formula_str = "~Timepoint")
+fit_coefs <- coefficient_table(gene_fits)
+cl13dat <- fit_coefs %>%
+  filter(normalized_effect != 0 ) %>%
+  arrange(q_value) %>%
+  filter(q_value < 0.05) 
+#Should be able to make a volcano plot with this pretty easily 
+ggplot(data = cl13dat, mapping = aes(x = normalized_effect, y = -log10(p_value))) + 
+  geom_point() +
+  geom_point(aes(color = (abs(normalized_effect) > 2 & p_value < 1e-20))) +
+  geom_text(data = cl13dat %>% filter(abs(normalized_effect) > 2 & p_value < 1e-20),
+            aes(x = normalized_effect, y = -log10(p_value) + 3, label = V2), size = 2,) +
+  theme_classic() +
+  theme(legend.position = "none") +
+  scale_color_manual(values = c("darkgray", "darkblue")) +
+  labs(title = "Neurons", y = expression(-log[10]("p-value")), x = expression(log[2]("fold change")))
+
 
 #make an upset plot
-upsetdata <- list("head neurons" = cl5dat$V2[1:500], "other neurons" = cl3dat$V2[1:500], "seam cells" = cl7dat$V2[1:500])
+upsetdata <- list("Muscle" = cl4dat$V2[1:500], "Gonad" = cl1dat$V2[1:500], "Neurons" = cl13dat$V2[1:500])
 upset(fromList(upsetdata), order.by = "freq")
-  
+
+#Find genes that are co-differentially expressed between the three DE analyses
+common_elements <- Reduce(intersect, list(cl4dat$V2[1:500], cl1dat$V2[1:500], cl13dat$V2[1:500]))
+
+
+#Hand off all these genes to Etta for GO analysis
+write.csv(cl4dat$V2, "cl4.csv", row.names = FALSE, quote = FALSE)
+write.csv(cl1dat$V2, "cl1.csv", row.names = FALSE, quote = FALSE)
+write.csv(cl13dat$V2, "cl13.csv", row.names = FALSE, quote = FALSE)
+write.csv(common_elements, "DE_allthree_2.csv", row.names = FALSE, quote = FALSE)
+
+
