@@ -1,0 +1,3 @@
+## Final Update
+
+Before presenting our final presentation, we re-evaluated the tissue type assignments by checking several other clusters. We found three clusters that had much more consistent marker gene associates (Cluster 4 had consistent marker genes for muscle cells, cluster 1 for gonad cells, and cluster 13 for neurons). Thus, we went forward with our DE analysis and GO analysis using these clusters. We ended up finding a pretty cool result, which is that each of the three clusters had unique expression changes over time from day 1 to day 8, but when considering only the genes that are co-differentially regulated between all three clusters, you see a strong GO enrichment for unfolded protein response. 
